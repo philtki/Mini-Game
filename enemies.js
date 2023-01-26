@@ -8,7 +8,7 @@ class Enemies {
     };
 
     update() {
-        
+
     };
     draw(ctx) {
         this.koopa.drawFrame(this.game.clockTick, ctx, this.x, this.y, 2.5);
