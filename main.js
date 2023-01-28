@@ -12,9 +12,9 @@ ASSET_MANAGER.downloadAll(() => {
 	const ctx = canvas.getContext("2d");
 	ctx.imageSmoothingEnabled = false;
 
-	// PARAMS.BLOCKWIDTH = PARAMS.BITWIDTH * PARAMS.SCALE;
-	// PARAMS.CANVAS_WIDTH = canvas.width;
-	// PARAMS.CANVAS_HEIGHT = canvas.height;
+	const BLOCKWIDTH = 16 * 3;
+	const WIDTH = canvas.clientWidth;
+	const HEIGHT = canvas.clientHeight;
 
 	new sceneManager(gameEngine);
 

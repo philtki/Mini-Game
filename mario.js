@@ -13,21 +13,21 @@ class Mario {
     };
 
     update() {
-        //hits roof or floor
-        if (this.y < 5) {
-            this.y = 12;
-        }
-        if (this.y > 733) {
-            this.y = 733;
-        }
-
-        if (this.game.keys[" "]) {
-            this.velocity += this.speed * 5;
-            this.y -= this.speed - this.velocity;
-        }
-        this.y = (this.y - this.velocity) + 2.5;
-        this.velocity = 0;
-        this.updateBB();
+        // //hits roof or floor
+        // if (this.y < 5) {
+        //     this.y = 12;
+        // }
+        // if (this.y > 733) {
+        //     this.y = 733;
+        // }
+        //
+        // if (this.game.keys[" "]) {
+        //     this.velocity += this.speed * 5;
+        //     this.y -= this.speed - this.velocity;
+        // }
+        // this.y = (this.y - this.velocity) + 2.5;
+        // this.velocity = 0;
+        // this.updateBB();
     };
 
     updateBB() {
@@ -36,7 +36,7 @@ class Mario {
 
     draw(ctx) {
         this.mario.drawFrame(this.game.clockTick, ctx, this.x, this.y, 2.5);
-        //this.bb.draw(ctx);
+        this.bb.draw(ctx);
     };
 
     collisionCheck() {
