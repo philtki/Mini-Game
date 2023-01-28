@@ -19,7 +19,7 @@ class sceneManager {
                 }
                 if (level.data[temp] == 3) {
                     //console.log("x:" + x + " y:" + y);
-                    gameEngine.addEntity(new Ground(this.game, x * 46.9, y * 38, 51, 51));
+                    gameEngine.addEntity(new Ground(this.game, x * 51, y * 40.5, 51, 51));
                 }
             }
         }
