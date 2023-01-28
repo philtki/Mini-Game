@@ -4,16 +4,20 @@ const ASSET_MANAGER = new AssetManager();
 
 ASSET_MANAGER.queueDownload("./mario.png");
 ASSET_MANAGER.queueDownload("./enemies.png");
+ASSET_MANAGER.queueDownload("./bricks.png");
 
 ASSET_MANAGER.downloadAll(() => {
+
 	const canvas = document.getElementById("gameWorld");
 	const ctx = canvas.getContext("2d");
 	ctx.imageSmoothingEnabled = false;
 
-	gameEngine.addEntity(new Mario(gameEngine, 300, 400 , ASSET_MANAGER.getAsset("./mario.png")));
-	gameEngine.addEntity(new Enemies(gameEngine, 300, 200 , ASSET_MANAGER.getAsset("./enemies.png")));
+	// PARAMS.BLOCKWIDTH = PARAMS.BITWIDTH * PARAMS.SCALE;
+	// PARAMS.CANVAS_WIDTH = canvas.width;
+	// PARAMS.CANVAS_HEIGHT = canvas.height;
+
+	new sceneManager(gameEngine);
 
 	gameEngine.init(ctx);
-
 	gameEngine.start();
 });

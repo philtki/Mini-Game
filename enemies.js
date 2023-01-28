@@ -1,6 +1,7 @@
 class Enemies {
-    constructor(game, x, y, spritesheet) {
-        Object.assign(this, {game, x, y, spritesheet});
+    constructor(game, x, y) {
+        Object.assign(this, {game, x, y});
+        this.spritesheet = ASSET_MANAGER.getAsset("./enemies.png");
         this.speed = 10;
 
         this.koopa = new Animator(this.spritesheet, 89, 1, 20, 24,
@@ -18,6 +19,6 @@ class Enemies {
 
     draw(ctx) {
         this.koopa.drawFrame(this.game.clockTick, ctx, this.x, this.y, 2.5);
-        this.bb.draw(ctx);
+        //this.bb.draw(ctx);
     };
 }

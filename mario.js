@@ -1,7 +1,8 @@
 class Mario {
 
-    constructor(game, x, y, spritesheet) {
-        Object.assign(this, {game, x, y, spritesheet});
+    constructor(game, x, y) {
+        Object.assign(this, {game, x, y});
+        this.spritesheet = ASSET_MANAGER.getAsset("./mario.png");
         this.speed = 10;
         this.velocity = 0;
 
@@ -35,7 +36,7 @@ class Mario {
 
     draw(ctx) {
         this.mario.drawFrame(this.game.clockTick, ctx, this.x, this.y, 2.5);
-        this.bb.draw(ctx);
+        //this.bb.draw(ctx);
     };
 
     collisionCheck() {
