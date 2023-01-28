@@ -1,13 +1,14 @@
 class Mario {
+
     constructor(game, x, y, spritesheet) {
         Object.assign(this, {game, x, y, spritesheet});
         this.speed = 10;
         this.velocity = 0;
 
-
-        this.koopa = new Animator()
         this.mario = new Animator(this.spritesheet, 463, 62, 24, 28,
                             3, .3, 9, false, true);
+        this.updateBB();
+
     };
 
     update() {
@@ -25,8 +26,25 @@ class Mario {
         }
         this.y = (this.y - this.velocity) + 2.5;
         this.velocity = 0;
+        this.updateBB();
     };
+
+    updateBB() {
+        this.bb = new BoundingBox(this.x, this.y, 60, 72);
+    }
+
     draw(ctx) {
         this.mario.drawFrame(this.game.clockTick, ctx, this.x, this.y, 2.5);
+        this.bb.draw(ctx);
     };
+
+    collisionCheck() {
+        this.game.entities.forEach(entity => {
+            if (this.bb.collide(entity.bb)) {
+                if (entity instanceof enemies) {
+                    this.y = 733;
+                }
+            }
+        });
+    }
 }

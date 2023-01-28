@@ -11,7 +11,7 @@ ASSET_MANAGER.downloadAll(() => {
 	ctx.imageSmoothingEnabled = false;
 
 	gameEngine.addEntity(new Mario(gameEngine, 300, 400 , ASSET_MANAGER.getAsset("./mario.png")));
-	gameEngine.addEntity(new Enemies(gameEngine, 700, 400 , ASSET_MANAGER.getAsset("./enemies.png")));
+	gameEngine.addEntity(new Enemies(gameEngine, 300, 200 , ASSET_MANAGER.getAsset("./enemies.png")));
 
 	gameEngine.init(ctx);
 
