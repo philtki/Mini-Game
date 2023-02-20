@@ -18,8 +18,9 @@ class Mario {
         if (this.y < 10) {
             this.y = 10;
         }
-        if (this.y > 745) {
-            this.y = 745;
+        if (this.y > 845) {
+            //this.y = 745;
+            this.die();
         }
         //hits side walls
         if (this.x < 10) {
@@ -51,7 +52,7 @@ class Mario {
 
     draw(ctx) {
         this.mario.drawFrame(this.game.clockTick, ctx, this.x, this.y, 2.5);
-        this.bb.draw(ctx);
+        //this.bb.draw(ctx);
     };
 
     collisionCheck() {

@@ -9,36 +9,35 @@ class Enemies {
 
     update() {
         this.updateBB();
-        if (this.y < 10) {
-            this.y = 10;
+        if (this.x <= -100) {
+            this.die();
         }
-        if (this.y > 745) {
-            this.y = 745;
-            this.speed = -this.speed;
-        }
-
         if (this.direction) {
-            this.y -= this.speed * this.game.clockTick;
-            this.x -= this.speed * this.game.clockTick;
+            if (this.y < 10) {
+                this.speed = -this.speed;
+            }
+            if (this.y >= 780) {
+                this.speed = -this.speed;
+            }
+            this.y += this.speed * this.game.clockTick;
+            this.x -= 1;
         } else {
             this.x -= this.speed * this.game.clockTick;
         }
-        if (this.x <= -100) {
-            //this.removeFromWorld = true;
-            this.x = 900;
-        }
+
     };
 
     updateBB() {
-        this.bb = new BoundingBox(this.x, this.y, 45, 55);
+        this.bb = new BoundingBox(this.x + 5, this.y, 15 * this.scale, 22 * this.scale);
     }
 
     draw(ctx) {
         this.koopa.drawFrame(this.game.clockTick, ctx, this.x, this.y, this.scale);
-        this.bb.draw(ctx);
+        //this.bb.draw(ctx);
     };
 
-    col(remove) {
-        this.game.removeFromWorld = true;
+    die() {
+        this.removeFromWorld = true;
+        this.game.camera.makeRandom();
     }
 }
