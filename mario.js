@@ -3,9 +3,9 @@ class Mario {
     constructor(game, x, y) {
         Object.assign(this, {game, x, y});
         this.spritesheet = ASSET_MANAGER.getAsset("./mario.png");
-        this.speed = 10;
+        this.speed = 8;
+        this.moveSpeed = 200;
         this.velocity = 0;
-        this.dead = false
 
         this.mario = new Animator(this.spritesheet, 463, 62, 24, 28,
                             3, .3, 9, false, true);
@@ -15,19 +15,29 @@ class Mario {
 
     update() {
         //hits roof or floor
-        if (this.y < 5) {
-            this.y = 12;
+        if (this.y < 10) {
+            this.y = 10;
         }
-        if (this.y > 733) {
-            this.y = 733;
+        if (this.y > 745) {
+            this.y = 745;
+        }
+        //hits side walls
+        if (this.x < 10) {
+            this.x = 10;
+        }
+        if (this.x > 950) {
+            this.x = 950;
         }
 
-        if (this.game.keys[" "]) {
+        if (this.game.keys["w"]) {
             this.velocity += this.speed * 5;
             this.y -= this.speed - this.velocity;
         }
         if (this.game.keys["d"]) {
-            this.x += this.speed - this.velocity;
+            this.x += this.moveSpeed * this.game.clockTick;
+        }
+        if (this.game.keys["a"]) {
+            this.x -= this.moveSpeed * this.game.clockTick;
         }
         this.y = (this.y - this.velocity) + 2.5;
         this.velocity = 0;
@@ -48,14 +58,16 @@ class Mario {
         this.game.entities.forEach(entity => {
             if (this.bb.collide(entity.bb)) {
                 if (entity instanceof Enemies) {
-                    this.y = 733;
-                    this.dead = true;
-                    //window.alert("wasted");
+                    this.die();
                 }
                 if (entity instanceof Ground) {
                     this.y = entity.bb.top - 72;
                 }
             }
         });
+    }
+
+    die() {
+        location.reload();
     }
 }
