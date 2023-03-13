@@ -1,21 +1,23 @@
 class retryMenu {
-    constructor(game, gems) {
-        Object.assign(this, { game, gems});
+    constructor(game) {
+        Object.assign(this, { game});
     };
 
     update() {
         this.game.clockTick = false;
         if (this.game.keys["r"]) {
-            location.reload();
+            this.game.camera.loadLevel();
         }
     };
 
     draw(ctx) {
-        ctx.font = '70px "Trajan-Pro-Regular"';
-        ctx.fillStyle = "rgb(241, 211, 41)";
-        ctx.fillText("GAME OVER", 330, 400);
+        ctx.font = '90px "Trajan-Pro-Regular"';
+        ctx.fillStyle = "rgb(255,0,0)";
+        ctx.fillText("GAME OVER", 250, 200);
         ctx.font = '50px "Trajan-Pro-Regular"';
-        ctx.fillText("Gems Collected: " + this.gems, 360, 520);
-        ctx.fillText("Press R to Retry", 380, 650);
+        ctx.font = '70px "Trajan-Pro-Regular"';
+        ctx.fillStyle = "rgb(255,167,0)";
+        ctx.fillText("Total Score: " + this.game.camera.points, 300, 420);
+        ctx.fillText("Press R to Retry", 300, 550);
     };
 }

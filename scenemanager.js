@@ -2,20 +2,23 @@ class sceneManager {
     constructor(game) {
         this.game = game;
         this.game.camera = this;
-        //this.title = true;
+        this.title = true;
         this.points = 0;
         this.spawnPoint = [10, 80, 150, 220, 290, 360, 430, 500, 570, 640, 710, 780];
-        this.loadLevel();
+        //this.loadLevel();
     };
 
     update() {
-        if (this.game.keys["Q"] === true) {
+        if (this.game.keys["q"] === true) {
             this.title = false;
-            console.log("hi");
+            this.loadLevel();
         }
     }
 
     loadLevel() {
+        this.game.entities.forEach(function (entity) {
+            entity.removeFromWorld = true;
+        });
         gameEngine.addEntity(new Mario(this.game, 10, 10));
         for (let i = 0; i < 5; i++) {
             this.makeRandom();
@@ -37,22 +40,21 @@ class sceneManager {
 
     draw(ctx) {
         if (this.title) {
-            //gradient testing
-            //lavaboy & icegirl text
-            ctx.font = '170px "Thayer-Street-NDP-Regular"';
-            //ctx.fillStyle = "rgb(255, 0, 0)";
-            ctx.fillText("lavaboy", 130, 290);
-            ctx.font = '90px "Trajan-Pro-Regular"';
-            ctx.fillStyle = "rgb(237, 161, 14)";
-            ctx.fillText("&", 525, 290);
-            ctx.font = '150px "Thayer-Street-NDP-Regular"';
-            ctx.fillStyle = "rgb(102, 204, 255)";
-            ctx.fillText("icegirl", 600, 290);
+            ctx.font = '100px "monospace"';
+            ctx.fillStyle = "rgb(255,0,0)";
+            ctx.fillText("Mario Mini Game", 130, 300);
+            ctx.font = '70px "monospace"';
+            ctx.fillStyle = "rgb(39,72,213)";
+            ctx.fillText("Press Q to start", 230, 500);
 
-            //press q to play
-            ctx.font = '90px "Trajan-Pro-Regular"';
-            ctx.fillStyle = "rgb(237, 161, 14)";
-            ctx.fillText("Press Q to Play", 275, 650);
+            ctx.font = '50px "monospace"';
+            ctx.fillStyle = "rgb(0,0,0)";
+            ctx.fillText("Controls:", 820, 700);
+            ctx.font = '30px "monospace"';
+            ctx.fillStyle = "rgb(255,167,0)";
+            ctx.fillText("W - Up/Jump", 820, 740);
+            ctx.fillText("A - Left", 820, 770);
+            ctx.fillText("D - Right", 820, 800);
         }
     }
 }

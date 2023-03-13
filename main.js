@@ -13,7 +13,7 @@ ASSET_MANAGER.downloadAll(() => {
 	ctx.imageSmoothingEnabled = false;
 
 	gameEngine.init(ctx);
-	//gameEngine.addEntity(new sceneManager(gameEngine));
-	new sceneManager(gameEngine);
+	gameEngine.addEntity(new sceneManager(gameEngine));
+	//new sceneManager(gameEngine);
 	gameEngine.start();
 });

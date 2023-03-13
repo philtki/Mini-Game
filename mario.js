@@ -7,6 +7,7 @@ class Mario {
         this.moveSpeed = 200;
         this.velocity = 0;
         this.score = 0;
+        this.title = true;
         this.mario = new Animator(this.spritesheet, 463, 62, 24, 28,
                             3, .3, 9, false, true);
         this.updateBB();
@@ -42,13 +43,14 @@ class Mario {
         }
         this.y = (this.y - this.velocity) + 2.5;
         this.velocity = 0;
+        this.score += 5 * 0.2;
+        this.game.camera.points = this.score;
         this.updateBB();
         this.collisionCheck();
     };
 
     updateBB() {
         this.bb = new BoundingBox(this.x, this.y, 60, 72);
-        this.score += 5 * 0.2;
     }
 
     draw(ctx) {
@@ -61,19 +63,17 @@ class Mario {
 
     collisionCheck() {
         this.game.entities.forEach(entity => {
-            if (this.bb.collide(entity.bb)) {
-                if (entity instanceof Enemies) {
-                    this.die();
-                }
-                if (entity instanceof Ground) {
-                    this.y = entity.bb.top - 72;
-                }
+            if (entity instanceof Enemies && this.bb.collide(entity.bb)) {
+                this.die();
             }
         });
     }
 
     die() {
         //location.reload();
-        this.game.addEntity(new retryMenu(this.game, this.game.camera.score));
+        this.game.entities.forEach(function (entity) {
+            entity.removeFromWorld = true;
+        });
+        this.game.addEntity(new retryMenu(this.game));
     }
 }
