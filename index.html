@@ -4,12 +4,19 @@
 <head>
     <meta charset="utf-8">
     <title>Mini Game</title>
+    <style>
+        body {
+            font-family: 'monospace',serif ;
+            font-size: 24px;
+        }
+    </style>
   
     <script type="text/javascript" src="./assetmanager.js"></script>
     <script type="text/javascript" src="./timer.js"></script>
     <script type="text/javascript" src="./gameengine.js"></script>
     <script type="text/javascript" src="./util.js"></script>
     <script type="text/javascript" src="./boundingbox.js"></script>
+    <script type="text/javascript" src="./retryMenu.js"></script>
     <script type="text/javascript" src="animator.js"></script>
     <script type="text/javascript" src="./mario.js"></script>
     <script type="text/javascript" src="./ground.js"></script>
@@ -21,9 +28,9 @@
 <body>
         <canvas id="gameWorld" width="1022" height="820" style="background: #a0d0f8; border: 1px solid black" tabindex="0" autofocus></canvas>
         <div>
-            <h4>. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . W: Up/Jump
+            <h4>. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . W: Up/Jump
                 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . </h4>
-            <h4>. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . A: Left . . . . . . . . . . D: Right
+            <h4>. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . A: Left . . . . . . . . . . D: Right
                 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . </h4>
         </div>
 </body>

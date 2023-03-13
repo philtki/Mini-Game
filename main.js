@@ -12,12 +12,8 @@ ASSET_MANAGER.downloadAll(() => {
 	const ctx = canvas.getContext("2d");
 	ctx.imageSmoothingEnabled = false;
 
-	const BLOCKWIDTH = 16 * 3;
-	const WIDTH = canvas.clientWidth;
-	const HEIGHT = canvas.clientHeight;
-
-	new sceneManager(gameEngine);
-
 	gameEngine.init(ctx);
+	//gameEngine.addEntity(new sceneManager(gameEngine));
+	new sceneManager(gameEngine);
 	gameEngine.start();
 });

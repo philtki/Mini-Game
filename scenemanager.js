@@ -2,11 +2,18 @@ class sceneManager {
     constructor(game) {
         this.game = game;
         this.game.camera = this;
-        this.second = 0;
-        this.min = 0;
+        //this.title = true;
+        this.points = 0;
         this.spawnPoint = [10, 80, 150, 220, 290, 360, 430, 500, 570, 640, 710, 780];
         this.loadLevel();
     };
+
+    update() {
+        if (this.game.keys["Q"] === true) {
+            this.title = false;
+            console.log("hi");
+        }
+    }
 
     loadLevel() {
         gameEngine.addEntity(new Mario(this.game, 10, 10));
@@ -29,6 +36,23 @@ class sceneManager {
     }
 
     draw(ctx) {
+        if (this.title) {
+            //gradient testing
+            //lavaboy & icegirl text
+            ctx.font = '170px "Thayer-Street-NDP-Regular"';
+            //ctx.fillStyle = "rgb(255, 0, 0)";
+            ctx.fillText("lavaboy", 130, 290);
+            ctx.font = '90px "Trajan-Pro-Regular"';
+            ctx.fillStyle = "rgb(237, 161, 14)";
+            ctx.fillText("&", 525, 290);
+            ctx.font = '150px "Thayer-Street-NDP-Regular"';
+            ctx.fillStyle = "rgb(102, 204, 255)";
+            ctx.fillText("icegirl", 600, 290);
 
+            //press q to play
+            ctx.font = '90px "Trajan-Pro-Regular"';
+            ctx.fillStyle = "rgb(237, 161, 14)";
+            ctx.fillText("Press Q to Play", 275, 650);
+        }
     }
 }

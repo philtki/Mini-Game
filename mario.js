@@ -6,7 +6,7 @@ class Mario {
         this.speed = 8;
         this.moveSpeed = 200;
         this.velocity = 0;
-
+        this.score = 0;
         this.mario = new Animator(this.spritesheet, 463, 62, 24, 28,
                             3, .3, 9, false, true);
         this.updateBB();
@@ -48,11 +48,15 @@ class Mario {
 
     updateBB() {
         this.bb = new BoundingBox(this.x, this.y, 60, 72);
+        this.score += 5 * 0.2;
     }
 
     draw(ctx) {
         this.mario.drawFrame(this.game.clockTick, ctx, this.x, this.y, 2.5);
         //this.bb.draw(ctx);
+        ctx.font = '40px "monospace"';
+        ctx.fillStyle = "rgb(237, 161, 14)";
+        ctx.fillText("Time: " + this.score, 10, 40);
     };
 
     collisionCheck() {
@@ -69,6 +73,7 @@ class Mario {
     }
 
     die() {
-        location.reload();
+        //location.reload();
+        this.game.addEntity(new retryMenu(this.game, this.game.camera.score));
     }
 }
